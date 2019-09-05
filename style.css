@@ -1,0 +1,219 @@
+/*
+    Rule of thumb: Use grid when we have grid-like views (such sa cards)
+    such as tables, cards, albums or anything where we need to manipulate different items in columns or rows
+    In all other use cases consider using flex.
+
+    The following is a great template for doing page LAYOUTS. From here you can easily continue your own project.
+*/
+
+/* Resetting margin since some browsers have their own set margin */
+body {
+    margin: 0 auto;
+    font-family: Helvetica;
+}
+
+.zone {
+    color:#FFF;
+    font-size:2em;
+    border-radius:4px;
+    transition: all 0.3s linear;
+}
+
+.zone:hover {
+    -webkit-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    -moz-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    -o-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+}
+
+/***********************************************************************
+ *  Nav Bar
+ **********************************************************************/
+/* 
+    use flex so we have one direction row as needed for header.
+    since creating <nav> we want to remove the dots (list-style).
+    again, we want to remove set margin by div and reset it so margin: 0
+*/
+.main-nav {
+    /* creates a */
+    display: flex;
+    list-style: none;
+    margin: 0;
+    font-size: 0.7em;
+}
+
+a:hover {
+    color: #686de0;
+}
+
+/*
+    When changing width size we see some nav cut, so we need to modify how it'll look when the width is smaller
+*/
+@media only screen and (max-width: 600px) {
+    .main-nav {
+        font-size: 0.5em;
+        padding: 0;
+    }
+}
+
+/*
+    this pushes 'contact' all the way to the right.
+    margin-left auto, automatically creates a max left margin to the div
+*/
+.push {
+    margin-left: auto;
+}
+
+/*
+    After setting above styles we see that all nav list items are close together.
+    So we want to create a padding between them.
+*/
+li {
+    padding: 20px;
+}
+
+a {
+    color: #f5f5f6;
+    text-decoration: none;
+}
+
+/*
+    To make navigation sticky, we set a position fixed. Top 0 is so the position is at the top of the page.
+    After setting these we see that the layout is not fit to full width, so we set it to 100%.
+*/
+.sticky {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+}
+
+/***********************************************************************
+ *  Cover
+ **********************************************************************/
+ /*
+    We use flex since we want to keep things simple (just center content).
+    After setting flex, justify-content centers content horizontal (X axis) within container and align-items centers vertical (Y axis)
+    finally, vh is "view height", and from 0%-100% describes how much of the screen browser to fill out. 
+    As we change height of screen, it'll auto adjust height to 100% of it
+ */
+.container {
+    /* vh = view height. We do this to make sure banner fills entire view */
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*
+We set the image within the cover layout
+rem = relative to font-size of root element. This is since we've created different font size to vary based on screen, 
+so this will automatically change this as well
+*/
+.cover {
+    width:100%;
+    height:100%;
+}
+
+/*
+    We'd like the text to appear in the center of the image and above it.
+ */
+.coverText {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+}
+
+.coverText > h1 {
+    color: white;
+    font-size: 40px;
+}
+
+/***********************************************************************
+ *  Body card grid
+ **********************************************************************/
+/*
+As described at top of page, we want to create a grid of blocks so we'll use grid this time. 
+    grid-template-columns sets the style of each column (or div). FYI: If we were to just set 1fr, we would see just one block per column.
+    So we set it to repeat (just like typing 1fr 1fr ...) and autofill display with anything from min 350px to whole screen (1fr)
+    Finally, we set a grid gap of 20px (padding like)
+*/
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-gap: 10px;
+}
+
+/*
+Pretty straight forward, for each card in the grid we set its margin accordingly.
+*/
+.card {
+    background-color: #444;
+    margin: 50px;
+}
+
+/*
+We want to make sure image fills entire box so we set width 100%.
+We just want to manipulate images within the class box, so we set it with the below syntax.
+*/
+
+.card > img {
+    max-width: 100%;
+    height: auto;
+}
+
+.card h1 {
+    font-size: 1.5rem;
+}
+
+.card p {
+    font-size: 1rem;
+}
+
+/*
+    We set the padding around the text within the card (unlike the image which should be spread to 100% width)
+*/
+.card > .text {
+    padding: 0 20px 20px;
+}
+
+/*
+    Finally, we set the button design that appears within each card.
+ */
+button {
+    cursor: pointer;
+    background: gray;
+    border: 0;
+    font-size: 1rem;
+    color: white;
+    padding: 10px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #686de0;
+}
+
+/***********************************************************************
+ *  Footer
+ **********************************************************************/
+footer {
+    text-align: center;
+    padding: 3px;
+    background-color: #30336b;
+}
+
+footer p {
+    font-size: 1rem;
+}
+
+/***********************************************************************
+ *  Blue Background
+ **********************************************************************/
+.blue {
+    background: #2d3436;
+}
+
